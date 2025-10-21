@@ -14,7 +14,4 @@ RUN curl -L -o /tmp/netbird.tar.gz https://github.com/netbirdio/netbird/releases
 COPY run.sh /
 RUN chmod +x /run.sh
 
-# Optional: nginx konfigurieren
-COPY nginx.conf /etc/nginx/nginx.conf
-
 CMD ["/bin/sh", "-c", "/run.sh"]
