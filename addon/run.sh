@@ -6,7 +6,7 @@ ENDPOINT=$(jq -r '.endpoint' "$CONFIG_PATH")
 SETUP_KEY=$(jq -r '.token' "$CONFIG_PATH")
 HOSTNAME=$(jq -r '.hostname' "$CONFIG_PATH")
 HA_IP=$(jq -r '.homeassistant_ip' "$CONFIG_PATH")
-HA_PORT=$(jq -r '.homeassistant_ip' "$CONFIG_PATH")
+HA_PORT=$(jq -r '.homeassistant_port' "$CONFIG_PATH")
 
 NETBIRD_DIR=/data/netbird
 mkdir -p "$NETBIRD_DIR"
