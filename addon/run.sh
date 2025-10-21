@@ -23,7 +23,7 @@ HA_PORT=8123
 
 # Function to generate nginx config dynamically
 create_nginx_conf() {
-    echo "[INFO] Creating nginx configuration on port $NGINX_PORT..."
+    echo "[INFO] Creating nginx configuration on port 8123..."
     cat << EOF > /etc/nginx/nginx.conf
 user  nginx;
 worker_processes  auto;
@@ -49,7 +49,7 @@ http {
     keepalive_timeout  65;
 
     server {
-        listen $NGINX_PORT;
+        listen 8123;
 
         server_name localhost;
 
