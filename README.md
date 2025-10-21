@@ -29,14 +29,13 @@ NetBird automatically handles secure peer-to-peer connections and NAT traversal,
 
 The add-on uses the following configuration options:
 
-| Option               | Type | Description |
-|----------------------|------|-------------|
-| `endpoint`           | str  | NetBird management URL (e.g. `https://netbird.example.com`) |
-| `token`              | str  | Setup key for adding this device to your NetBird network |
-| `hostname`           | str  | Optional: Custom hostname for this device (default: HomeAssistant) |
-| `nginx_port`         | int  | Port on which the internal Nginx web interface will listen |
-| `homeassistant_ip`   | str  | IP address of the Home Assistant host (used for proxying requests) |
-| `homeassistant_port` | int  | Port of Home Assistant (usually 8123) |
+| Option               | Description |
+|----------------------|-------------|
+| `endpoint`           | NetBird management URL (e.g. `https://netbird.example.com`) |
+| `token`              | Setup key for adding this device to your NetBird network |
+| `hostname`           | Custom hostname for this device (default: HomeAssistant) |
+| `homeassistant_ip`   | IP address of the Home Assistant host (used for proxying requests) |
+| `homeassistant_port` | Port of Home Assistant (usually 8123) |
 
 ### Example Configuration
 
@@ -44,7 +43,6 @@ The add-on uses the following configuration options:
 endpoint: "https://netbird.example.com"
 token: "YOUR_SETUP_KEY_HERE"
 hostname: "HomeAssistant"
-nginx_port: 8888
 homeassistant_ip: "192.168.178.53"
 homeassistant_port: 8123
 ```
