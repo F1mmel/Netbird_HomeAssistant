@@ -5,7 +5,8 @@ CONFIG_PATH=/data/options.json
 ENDPOINT=$(jq -r '.endpoint' "$CONFIG_PATH")
 SETUP_KEY=$(jq -r '.token' "$CONFIG_PATH")
 HOSTNAME=$(jq -r '.hostname' "$CONFIG_PATH")
-NGINX_PORT=$(jq -r '.nginx_port' "$CONFIG_PATH")
+HA_IP=$(jq -r '.homeassistant_ip' "$CONFIG_PATH")
+HA_PORT=$(jq -r '.homeassistant_ip' "$CONFIG_PATH")
 
 NETBIRD_DIR=/data/netbird
 mkdir -p "$NETBIRD_DIR"
@@ -16,10 +17,6 @@ if [ ! -L /var/lib/netbird ]; then
     rm -rf /var/lib/netbird
     ln -s "$NETBIRD_DIR" /var/lib/netbird
 fi
-
-# Home Assistant IP & port
-HA_IP="127.0.0.1"
-HA_PORT=8123
 
 # Function to generate nginx config dynamically
 create_nginx_conf() {
@@ -79,7 +76,6 @@ nginx -g 'daemon off;' &
 echo "[INFO] Starting NetBird..."
 echo " - Endpoint: $ENDPOINT"
 echo " - Hostname: $HOSTNAME"
-echo " - Nginx Port: $NGINX_PORT"
 echo " - Proxying to HA at $HA_IP:$HA_PORT"
 
 # Start NetBird daemon
