@@ -1,6 +1,6 @@
 name: "Netbird"
 description: "Connect Home Assistant to your Netbird network"
-version: "0.60.0"
+version: "1.0"
 slug: "netbird"
 init: false
 arch:
