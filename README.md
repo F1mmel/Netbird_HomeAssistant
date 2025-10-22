@@ -50,7 +50,7 @@ homeassistant_port: 8123
 
 Once the add-on is connected to your NetBird network, you can access your Home Assistant instance securely via:
 
-**http://NETBIRD_PEER_IP:nginx_port**
+**http://NETBIRD_PEER_IP:8123**
 
 - `NETBIRD_PEER_IP` is the IP assigned to your Home Assistant device in the NetBird network.  
 - `nginx_port` is the port you configured in the add-on options (`nginx_port`).  
