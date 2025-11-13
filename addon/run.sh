@@ -7,6 +7,7 @@ SETUP_KEY=$(jq -r '.token' "$CONFIG_PATH")
 HOSTNAME=$(jq -r '.hostname' "$CONFIG_PATH")
 HA_IP=$(jq -r '.homeassistant_ip' "$CONFIG_PATH")
 HA_PORT=$(jq -r '.homeassistant_port' "$CONFIG_PATH")
+USE_SSL=$(jq -r '.use_ssl' "$CONFIG_PATH")
 
 NETBIRD_DIR=/data/netbird
 mkdir -p "$NETBIRD_DIR"
@@ -20,6 +21,11 @@ fi
 
 # Function to generate nginx config dynamically
 create_nginx_conf() {
+    local PROTOCOL="http"
+    if [ "$USE_SSL" = "true" ]; then
+        PROTOCOL="https"
+    fi
+
     echo "[INFO] Creating nginx configuration on port 8123..."
     cat << EOF > /etc/nginx/nginx.conf
 user  nginx;
@@ -51,7 +57,7 @@ http {
         server_name localhost;
 
         location / {
-            proxy_pass http://$HA_IP:$HA_PORT;
+            proxy_pass ${PROTOCOL}://$HA_IP:$HA_PORT;
             proxy_set_header Host \$host;
             proxy_set_header X-Real-IP \$remote_addr;
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
@@ -76,7 +82,7 @@ nginx -g 'daemon off;' &
 echo "[INFO] Starting NetBird..."
 echo " - Endpoint: $ENDPOINT"
 echo " - Hostname: $HOSTNAME"
-echo " - Proxying to HA at $HA_IP:$HA_PORT"
+echo " - Proxying to HA at $HA_IP:$HA_PORT (SSL: $USE_SSL)"
 
 # Start NetBird daemon
 /usr/bin/netbird service run &

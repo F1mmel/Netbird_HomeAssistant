@@ -1,6 +1,6 @@
 name: "Netbird"
 description: "Connect Home Assistant to your Netbird network"
-version: "1.1"
+version: "1.2"
 slug: "netbird"
 init: false
 arch:
@@ -17,9 +17,11 @@ options:
   hostname: "HomeAssistant"
   homeassistant_ip: "192.168.x.x"
   homeassistant_port: 8123
+  use_ssl: false
 schema:
   endpoint: str
   token: str
   hostname: str
   homeassistant_ip: str
   homeassistant_port: int
+  use_ssl: bool
